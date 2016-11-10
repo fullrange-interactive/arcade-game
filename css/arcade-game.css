@@ -1,0 +1,238 @@
+body {
+  background-color: #666;
+  margin: 0;
+  padding: 0;
+  font-family: 'press_start_2pregular';
+  font-smooth: never;
+  -webkit-font-smoothing : none;
+}
+
+#overlay {
+  width: 100%;
+  position: absolute;
+  margin: 0;
+  top: 0;
+  opacity: 0.5;
+  pointer-events: none;
+  visibility: hidden;
+  z-index: 12;
+}
+
+#scene {
+  position: absolute;
+  background-color: #000;
+}
+
+.sprite {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  position: absolute;
+}
+
+/* Spaceship */
+.spaceship:after {
+  content: '';
+  background-image: url('../img/spaceship.png');
+  background-size: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.05);
+}
+
+.spaceship {
+  position: absolute;
+  width: 1.4375%;
+  height: 10%;
+}
+
+.spaceship.dead {
+  visibility: hidden;
+}
+
+.spaceship.invincible {
+  /*animation: blink-animation 0.2s steps(2, start) infinite;*/
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* Monsters */
+.monster.basic {
+  background-image: url('../img/monster-basic.png');
+  height: 6.08%;
+}
+
+.monster.basic.dangerous {
+  background-image: url('../img/monster-basic-dangerous.gif');
+}
+
+.monster.squid {
+  background-image: url('../img/monster-squid.png');
+  height: 5.6%;
+}
+
+.monster.squid.dangerous {
+  background-image: url('../img/monster-squid-dangerous.gif');
+}
+
+.monster.jellyfish {
+  background-image: url('../img/monster-jellyfish.png');
+}
+
+.monster.jellyfish.dangerous {
+  background-image: url('../img/monster-jellyfish-dangerous.gif');
+}
+
+.monster.exploding {
+  background-image: url('../img/explosion.gif') !important;
+}
+
+.spaceship.exploding:after {
+  background-image: url('../img/explosion.gif') !important;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.spaceship.exploding {
+  background-color: transparent !important;
+}
+
+.monster {
+  position: absolute;
+  width: 0.8%;
+  height: 8%;
+  background-size: 100% auto;
+}
+
+.monster.dangerous.squid {
+  background-position: center;
+}
+
+.laser {
+  position: absolute;
+  width: 0.1%;
+  height: 3%;
+  margin-right: -2.5px;
+}
+
+/* Shields */
+.shield {
+  width: 2%;
+  height: 6%;
+  /*background-image: url('../img/shield.png');*/
+  /*outline: 1px solid red;*/
+}
+
+svg.filters {
+  display: none;
+}
+
+.score {
+  color: #fff;
+  font-size: 1em;
+  position: absolute;
+  margin: 0.5% 0.5%;
+}
+
+#score-1 {
+  left: 0;
+}
+
+#score-2 {
+  left: 40%;
+}
+
+#score-3 {
+  left: 60%;
+}
+
+.game-over-canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.game-over {
+  position: absolute;
+  z-index: 11;
+  color: #fff;
+  font-size: 3.5em;
+  text-align: center;
+  top: -50%;
+  visibility: hidden;
+  transition: top 0.3s cubic-bezier(.35,1.67,.23,1);
+}
+
+.game-over.visible {
+  visibility: visible;
+  top: 30%;
+  transform: rotate(-3deg);
+  transform-origin: 0.5 0.5;
+}
+
+#game-over-1 {
+  width: 39.3%;
+  /*animation: floating-1 1.1s infinite;*/
+}
+
+#game-over-2 {
+  width: 21.3%;
+  left: 39.3%;
+  /*animation: floating-1 0.9s infinite;*/
+}
+
+#game-over-3 {
+  width: 39.3%;
+  left: 60.7%;
+  /*animation: floating-1 1s infinite;*/
+}
+
+@font-face {
+  font-family: 'press_start_2pregular';
+  src: url('pressstart2p-webfont.woff2') format('woff2'),
+       url('pressstart2p-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#warner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#warner * {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-repeat: repeat-x;
+  visibility: hidden;
+  background-size: auto 40%;
+}
+
+#warner.visible * {
+  visibility: visible;
+}
+
+#warner .left {
+  width: 40%;
+  background-position: 0% 15%;
+  background-image: url('../img/warning.gif');
+}
+
+#warner .right {
+  width: 40%;
+  left: 60%;
+  background-position: 100% 15%;
+  background-image: url('../img/warning-flipped.gif');
+}
