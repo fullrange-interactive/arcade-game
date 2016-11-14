@@ -89,8 +89,7 @@ $(document).ready(function pageReady() {
         waitingPlayers: waitingPlayers,
         kickedPlayers: kickedPlayers
       }
-    }, playerIds);
-    throw "Save State"
+    });
   }
 
   function onOpen(connection) {
