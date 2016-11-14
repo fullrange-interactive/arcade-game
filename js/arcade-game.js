@@ -1,6 +1,6 @@
 $(document).ready(function pageReady() {
 
-  var IS_DEV = true;
+  var IS_DEV = false;
 
   var SHIELDS_AMOUNT = 6;
 
@@ -9,7 +9,9 @@ $(document).ready(function pageReady() {
   var MONSTER_BURST_AMOUNT = 4;
   var MONSTER_BURST_WAIT = 1;
 
-  var MAX_PLAYERS = 8;
+  var MAX_IDLE_TIME = 30000;
+
+  var MAX_PLAYERS = 2;
 
   var playerColors = [];
   for (var i = 0; i < MAX_PLAYERS; i++) {
@@ -29,12 +31,17 @@ $(document).ready(function pageReady() {
 
   function createPlayerForId(id) {
     if (playerIds[id]) {
-      return;
+      return false;
     }
     if (totalPlayers === MAX_PLAYERS) {
-      waitingPlayers[id] = true;
-      totalWaiting++;
-      return;
+      var exists = false;
+      if (typeof waitingPlayers[id] !== 'undefined') {
+        totalWaiting++;
+      } else {
+        exists = true;
+      }
+      waitingPlayers[id] = Date.now();
+      return !exists;
     }
     if (!spaceships[id]) {
       if (!playerIds[id]) {
@@ -55,8 +62,24 @@ $(document).ready(function pageReady() {
       if (kickedPlayers[id]) {
         delete kickedPlayers[id];
       }
+      return true;
     }
+    return false;
   }
+
+  setInterval(function () {
+    var kicked = false;
+    for (var i in waitingPlayers) {
+      if (Date.now() - waitingPlayers[i] > MAX_IDLE_TIME) {
+        delete waitingPlayers[i];
+        totalWaiting--;
+        kicked = true;
+      }
+    }
+    if (kicked) {
+      saveState(connection);
+    }
+  }, 15000);
 
   function saveState(connection) {
     connection.sendMessage({
@@ -67,6 +90,7 @@ $(document).ready(function pageReady() {
         kickedPlayers: kickedPlayers
       }
     }, playerIds);
+    throw "Save State"
   }
 
   function onOpen(connection) {
@@ -98,8 +122,9 @@ $(document).ready(function pageReady() {
         break;
       case 'new-player':
         if (!spaceships[parsedMessage.data.userId]) {
-          createPlayerForId(parsedMessage.data.userId);
-          saveState(connection);
+          if (createPlayerForId(parsedMessage.data.userId)) {
+            saveState(connection);
+          }
         }
       case 'hello':
         saveState(connection);
@@ -156,6 +181,7 @@ $(document).ready(function pageReady() {
     totalPlayers--;
     // clearInterval(newMonsterInterval);
     // newMonsterInterval = setInterval(monsterInterval, MONSTER_FREQUENCY - (totalPlayers / 2) * 100);
+    element.die();
     delete playerIds[element.userId];
     delete spaceships[element.userId];
 
@@ -184,7 +210,7 @@ $(document).ready(function pageReady() {
         delete kickedPlayers[userId];
       }
       saveState(connection);
-    }, 1000)
+    }, 100000)
   });
 
   scene.onGameOver = function () {
