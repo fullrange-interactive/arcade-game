@@ -286,11 +286,11 @@ $(document).ready(function pageReady() {
     if (totalPlayers > 4) {
       zone = zone = zones[Math.floor(Math.random() * zones.length)];
     }
-    if (numMonsters < MONSTER_BURST_AMOUNT + totalPlayers * 2) {
+    if (numMonsters < MONSTER_BURST_AMOUNT + totalPlayers * 3) {
       monsters.push(new MonsterBasic(zone.x + zone.w * 0.5, -0.05, zone));
       numMonsters++;
     }
-    if (numMonsters >= MONSTER_BURST_AMOUNT + totalPlayers * 2) {
+    if (numMonsters >= MONSTER_BURST_AMOUNT + totalPlayers * 3) {
       zone = zones[Math.floor(Math.random() * zones.length)];
       waitMonsters = 0;
     }
