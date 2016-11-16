@@ -14,7 +14,7 @@
   var TURN_ACCEL_Y = 1.1;
   var TURN_ACCEL_X = 1.3;
 
-  var SHOOT_INTERVAL = 2 * 1000;
+  var SHOOT_INTERVAL = 4 * 1000;
   var SHOOT_SPEED = 0.5;
 
   var WARN_DURATION = 1;
