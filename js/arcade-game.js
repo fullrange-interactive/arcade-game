@@ -290,6 +290,7 @@ $(document).ready(function pageReady() {
       for (var i = 0; i < Math.ceil(totalPlayers / 2); i++) {
         monsters.push(new MonsterBasic(zone.x + zone.w * (Math.random() * 0.25 + 0.25), -0.05, zone));
         numMonsters++;
+        zone = zone = zones[Math.floor(Math.random() * zones.length)];
       }
     }
     if (numMonsters >= MONSTER_BURST_AMOUNT + totalPlayers * 3) {
