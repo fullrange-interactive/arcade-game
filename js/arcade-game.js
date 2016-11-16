@@ -287,8 +287,10 @@ $(document).ready(function pageReady() {
       zone = zone = zones[Math.floor(Math.random() * zones.length)];
     }
     if (numMonsters < MONSTER_BURST_AMOUNT + totalPlayers * 3) {
-      monsters.push(new MonsterBasic(zone.x + zone.w * 0.5, -0.05, zone));
-      numMonsters++;
+      for (var i = 0; i < totalPlayers; i++) {
+        monsters.push(new MonsterBasic(zone.x + zone.w * (Math.random() * 0.25 + 0.25), -0.05, zone));
+        numMonsters++;
+      }
     }
     if (numMonsters >= MONSTER_BURST_AMOUNT + totalPlayers * 3) {
       zone = zones[Math.floor(Math.random() * zones.length)];
