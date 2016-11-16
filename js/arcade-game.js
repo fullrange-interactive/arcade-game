@@ -287,7 +287,7 @@ $(document).ready(function pageReady() {
       zone = zone = zones[Math.floor(Math.random() * zones.length)];
     }
     if (numMonsters < MONSTER_BURST_AMOUNT + totalPlayers * 3) {
-      for (var i = 0; i < Math.ceil(totalPlayers / 3); i++) {
+      for (var i = 0; i < Math.ceil(Math.min(totalPlayers, 1) / 3); i++) {
         monsters.push(new MonsterBasic(zone.x + zone.w * (Math.random() * 0.25 + 0.25), -0.05, zone));
         numMonsters++;
         zone = zone = zones[Math.floor(Math.random() * zones.length)];
