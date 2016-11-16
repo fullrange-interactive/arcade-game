@@ -11,7 +11,7 @@ $(document).ready(function pageReady() {
 
   var MAX_IDLE_TIME = 30000;
 
-  var MAX_PLAYERS = 2;
+  var MAX_PLAYERS = 8;
 
   var playerColors = [];
   for (var i = 0; i < MAX_PLAYERS; i++) {
