@@ -1,6 +1,6 @@
 $(document).ready(function pageReady() {
 
-  var IS_DEV = true;
+  var IS_DEV = false;
 
   var SHIELDS_AMOUNT = 6;
 
