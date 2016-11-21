@@ -1,6 +1,6 @@
 $(document).ready(function pageReady() {
 
-  var IS_DEV = false;
+  var IS_DEV = true;
 
   var SHIELDS_AMOUNT = 6;
 
@@ -134,7 +134,7 @@ $(document).ready(function pageReady() {
   }
 
   if (IS_DEV) {
-    var ip = '192.168.1.103'
+    var ip = 'localhost'
   } else {
     var ip = 'lausanne.pimp-my-wall.ch'
   }
@@ -243,24 +243,56 @@ $(document).ready(function pageReady() {
 
     // Create shields
     function makeShields() {
-      new Shield(0.48, 0.8);
-      new Shield(1.125, 0.8);
-      new Shield(1.77, 0.8);
-      new Shield(2.42, 0.8);
-      new Shield(3.07, 0.8);
-      new Shield(3.69, 0.8);
-      new Shield(4.35, 0.8);
-      new Shield(5.04, 0.8);
-      new Shield(5.74, 0.8);
-      new Shield(6.38, 0.8);
-      new Shield(7.02, 0.8);
-      new Shield(7.67, 0.8);
-      new Shield(8.32, 0.8);
-      new Shield(8.96, 0.8);
-      new Shield(9.61, 0.8);
+      new Shield(0.437, 0.8);
+      new Shield(1.020, 0.8);
+      new Shield(1.613, 0.8);
+      new Shield(2.205, 0.8);
+      new Shield(2.797, 0.8);
+      new Shield(3.362, 0.8);
+      new Shield(3.964, 0.8);
+      new Shield(4.593, 0.8);
+      new Shield(5.230, 0.8);
+      new Shield(5.814, 0.8);
+      new Shield(6.397, 0.8);
+      new Shield(6.989, 0.8);
+      new Shield(7.582, 0.8);
+      new Shield(8.165, 0.8);
+      new Shield(8.757, 0.8);
+      // new Shield(0.593912398, 0.8);
+      // new Shield(1.187824796, 0.8);
+      // new Shield(1.781737194, 0.8);
+      // new Shield(2.375649592, 0.8);
+      // new Shield(2.96956199, 0.8);
+      // new Shield(3.563474388, 0.8);
+      // new Shield(4.157386785, 0.8);
+      // new Shield(4.751299183, 0.8);
+      // new Shield(5.345211581, 0.8);
+      // new Shield(5.939123979, 0.8);
+      // new Shield(6.533036377, 0.8);
+      // new Shield(7.126948775, 0.8);
+      // new Shield(7.720861173, 0.8);
+      // new Shield(8.314773571, 0.8);
     }
     makeShields();
   }
+
+3.563474388
+4.157386785
+4.751299183
+5.345211581
+5.939123979
+6.533036377
+7.126948775
+7.720861173
+8.314773571
+
+
+
+
+
+
+
+
 
   var zones = [];
   for (var i = 0; i < NUM_ZONES; i++) {
