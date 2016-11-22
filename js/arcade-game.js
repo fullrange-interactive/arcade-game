@@ -4,7 +4,7 @@ $(document).ready(function pageReady() {
 
   var SHIELDS_AMOUNT = 6;
 
-  var NUM_ZONES = 6;
+  var NUM_ZONES = 5;
   var MONSTER_FREQUENCY = 1200;
   var MONSTER_BURST_AMOUNT = 4;
   var MONSTER_BURST_WAIT = 1;
@@ -12,6 +12,8 @@ $(document).ready(function pageReady() {
   var MAX_IDLE_TIME = 30000;
 
   var MAX_PLAYERS = 8;
+
+  var MAX_NUM_MONSTERS = 8;
 
   var playerColors = [];
   for (var i = 0; i < MAX_PLAYERS; i++) {
@@ -168,11 +170,23 @@ $(document).ready(function pageReady() {
   var newMonsterInterval = null;
 
   var score = 0;
+
+  var numMonsters = 0;
+
   Renderable.addListener('monster-kill', function (element) {
+    console.log('monster died');
+    numMonsters--;
     score += 100;
     $(".score").each(function () {
       $(this).text('Score: ' + score)
     })
+    if (monsters.length > 0) {
+      for (var i = monsters.length - 1; i >= 0; i--) {
+        if (monsters[i].isDead) {
+          monsters = monsters.splice(i, 1);
+        }
+      }
+    }
   });
 
   Renderable.addListener('player-inactive', function (element) {
@@ -234,6 +248,9 @@ $(document).ready(function pageReady() {
 
   function initWorld() {
     score = 0;
+    waitZeroMonsters = false;
+    generatedMonsters = 0;
+    numMonsters = 0;
     var newSpaceShip = new Spaceship('bot', Math.random() * window.scene.oDims.w, '#ffffff');
     spaceships['bot'] = newSpaceShip;
 
@@ -258,76 +275,67 @@ $(document).ready(function pageReady() {
       new Shield(7.582, 0.8);
       new Shield(8.165, 0.8);
       new Shield(8.757, 0.8);
-      // new Shield(0.593912398, 0.8);
-      // new Shield(1.187824796, 0.8);
-      // new Shield(1.781737194, 0.8);
-      // new Shield(2.375649592, 0.8);
-      // new Shield(2.96956199, 0.8);
-      // new Shield(3.563474388, 0.8);
-      // new Shield(4.157386785, 0.8);
-      // new Shield(4.751299183, 0.8);
-      // new Shield(5.345211581, 0.8);
-      // new Shield(5.939123979, 0.8);
-      // new Shield(6.533036377, 0.8);
-      // new Shield(7.126948775, 0.8);
-      // new Shield(7.720861173, 0.8);
-      // new Shield(8.314773571, 0.8);
     }
     makeShields();
   }
 
-3.563474388
-4.157386785
-4.751299183
-5.345211581
-5.939123979
-6.533036377
-7.126948775
-7.720861173
-8.314773571
-
-
-
-
-
-
-
-
-
-  var zones = [];
-  for (var i = 0; i < NUM_ZONES; i++) {
-    var zone = {
-      x: i * window.scene.oDims.w / NUM_ZONES,
-      w: window.scene.oDims.w / NUM_ZONES
+  var zones = [
+    {
+      subZones: [
+        {x: 0.0, w: 0.2},
+        {x: 0.2, w: 0.2}
+      ]
+    },
+    {
+      subZones: [
+        {x: 0.4, w: 0.1},
+        {x: 0.5, w: 0.1}
+      ]
+    },
+    {
+      subZones: [
+        {x: 0.6, w: 0.2},
+        {x: 0.8, w: 0.2}
+      ]
     }
-    zones.push(zone);
+  ];
+  for (var i in zones) {
+    for (var j in zones[i].subZones) {
+      zones[i].subZones[j].x *= window.scene.oDims.w;
+      zones[i].subZones[j].w *= window.scene.oDims.w;
+    }
   }
 
-  var numMonsters = 0;
-  var waitMonsters = 0;
   var zone = zones[Math.floor(Math.random() * zones.length)];
+
+  var waitZeroMonsters = false;
+  var generatedMonsters = 0;
+
   function monsterInterval() {
     if (isGameOver)
       return;
-    // return;
-    if (waitMonsters <= Math.max(0, MONSTER_BURST_WAIT - totalPlayers)) {
-      waitMonsters++;
-      numMonsters = 0;
+
+    if (waitZeroMonsters && numMonsters > 0) {
+      console.log('waiting...')
+      return;
+    } else if (waitZeroMonsters && numMonsters <= 0) {
+      waitZeroMonsters = false;
+      generatedMonsters = 0;
+    }
+
+    if (generatedMonsters > MAX_NUM_MONSTERS) {
+      zone = zone = zones[Math.floor(Math.random() * zones.length)];
+      console.log('Changing zone')
+      waitZeroMonsters = true;
       return;
     }
-    if (totalPlayers > 4) {
-      zone = zone = zones[Math.floor(Math.random() * zones.length)];
-    }
-    if (numMonsters < MONSTER_BURST_AMOUNT + totalPlayers * 3) {
-      for (var i = 0; i < Math.ceil(Math.max(totalPlayers, 1) / 3); i++) {
-        monsters.push(new MonsterBasic(zone.x + zone.w * (Math.random() * 0.25 + 0.25), -0.05, zone));
-        numMonsters++;
-        zone = zone = zones[Math.floor(Math.random() * zones.length)];
-      }
-    }
-    if (numMonsters >= MONSTER_BURST_AMOUNT + totalPlayers * 3) {
-      zone = zones[Math.floor(Math.random() * zones.length)];
-      waitMonsters = 0;
+
+    for (var i = 0; i < Math.ceil(Math.max(totalPlayers, 1) / 3); i++) {
+      var subZone = zone.subZones[Math.floor(Math.random() * zone.subZones.length)];
+
+      monsters.push(new MonsterBasic(subZone.x + subZone.w * 0.5, -0.05, subZone));
+      numMonsters++;
+      generatedMonsters++;
     }
   }
 

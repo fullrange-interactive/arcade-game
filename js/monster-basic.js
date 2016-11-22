@@ -172,6 +172,7 @@
     },
 
     die: function () {
+      global.Renderable.triggerEvent('monster-kill', this)
       this.isDead = true;
       this.dom.addClass('exploding');
       this.vx = this.vy = 0;
@@ -195,7 +196,6 @@
     },
 
     onCollide: function (element, relX, relY) {
-      global.Renderable.triggerEvent('monster-kill', this)
       if (global.scene.monsters) {
         var index =  global.scene.monsters.indexOf(this)
         if (index !== -1)

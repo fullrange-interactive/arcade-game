@@ -207,6 +207,7 @@
       }
       this.invincible = true;
       this.dead = false;
+      this.dom.removeClass('exploding');
       this.dom.removeClass('dead');
       this.dom.addClass('invincible');
       this.invincibilityTimeout = setTimeout(function () {
@@ -217,8 +218,14 @@
 
     render: function () {
       this.renderableRender();
+
+      var curColor = this.color;
+      if (this.dom.hasClass('exploding')) {
+        curColor = 'transparent'
+      };
+
       this.dom.css({
-        backgroundColor: this.color,
+        backgroundColor: curColor,
         // filter: 'url(#spaceship-blur)'
       });
       // var filters = document.querySelector(".filters"), // the SVG that contains the filters

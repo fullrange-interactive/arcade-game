@@ -52,7 +52,7 @@ body {
 }
 
 .spaceship.invincible {
-  /*animation: blink-animation 0.2s steps(2, start) infinite;*/
+  animation: blink-animation 0.2s steps(2, start) infinite;
 }
 
 @keyframes blink-animation {
