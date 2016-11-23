@@ -1,5 +1,6 @@
 (function (global) {
   global.Laser = Renderable.extend({
+    type: 'laser',
     initialize: function (source, x, y, color, speed) {
       this.renderableInitialize();
       this.color = color;

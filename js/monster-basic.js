@@ -28,6 +28,7 @@
     zone: {start: 0, width: 0.4},
     source: 'enemy',
     isDead: false,
+    type: 'monster',
     initialize: function (x, y, zone, type) {
       this.renderableInitialize(true);
 
@@ -172,8 +173,8 @@
     },
 
     die: function () {
-      global.Renderable.triggerEvent('monster-kill', this)
       this.isDead = true;
+      global.Renderable.triggerEvent('monster-kill', this)
       this.dom.addClass('exploding');
       this.vx = this.vy = 0;
       setTimeout(function () {

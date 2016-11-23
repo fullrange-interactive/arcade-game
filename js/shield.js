@@ -2,6 +2,7 @@
   global.Shield = Renderable.extend({
     source: 'shield',
     doCheckCollisions: false,
+    type: 'shield',
     initialize: function (x, y) {
       this.renderableInitialize(true);
       this.x = x;

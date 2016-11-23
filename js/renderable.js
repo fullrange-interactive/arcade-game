@@ -7,13 +7,14 @@
   var GAME_OVER_CIRCLE_K = 5;
 
   var WARN_TIME = 500;
-  var WARN_MARGIN = 0.01;
+  var WARN_MARGIN = 0.02;
 
   global.Renderable = Class.extend({
     x: 0,
     y: 0,
     originX: 0,
     originY: 0,
+    type: 'renderable',
     renderableInitialize: function (collideable) {
       global.scene.addRenderable(this, collideable);
     },
@@ -289,7 +290,7 @@
     warn: function (renderable) {
       $("#warner").addClass('visible');
       var lw = Math.max(0, renderable.x / this.oDims.w - WARN_MARGIN);
-      var rw = Math.min(1, 1 - renderable.x / this.oDims.w + WARN_MARGIN);
+      var rw = Math.min(1, 1 - renderable.x / this.oDims.w - WARN_MARGIN);
       var rl = Math.min(1, renderable.x / this.oDims.w + WARN_MARGIN);
       $('#warner .left').css({
         width: (lw * 100) + '%'

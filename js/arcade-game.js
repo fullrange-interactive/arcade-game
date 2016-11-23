@@ -171,21 +171,17 @@ $(document).ready(function pageReady() {
 
   var score = 0;
 
-  var numMonsters = 0;
+  // var numMonsters = 0;
 
   Renderable.addListener('monster-kill', function (element) {
     console.log('monster died');
-    numMonsters--;
+    // numMonsters--;
     score += 100;
     $(".score").each(function () {
       $(this).text('Score: ' + score)
     })
-    if (monsters.length > 0) {
-      for (var i = monsters.length - 1; i >= 0; i--) {
-        if (monsters[i].isDead) {
-          monsters = monsters.splice(i, 1);
-        }
-      }
+    if (monsters.indexOf(element) >= 0) {
+      monsters.splice(monsters.indexOf(element), 1);
     }
   });
 
@@ -250,7 +246,7 @@ $(document).ready(function pageReady() {
     score = 0;
     waitZeroMonsters = false;
     generatedMonsters = 0;
-    numMonsters = 0;
+    // numMonsters = 0;
     var newSpaceShip = new Spaceship('bot', Math.random() * window.scene.oDims.w, '#ffffff');
     spaceships['bot'] = newSpaceShip;
 
@@ -269,12 +265,12 @@ $(document).ready(function pageReady() {
       new Shield(3.964, 0.8);
       new Shield(4.593, 0.8);
       new Shield(5.230, 0.8);
-      new Shield(5.814, 0.8);
-      new Shield(6.397, 0.8);
-      new Shield(6.989, 0.8);
-      new Shield(7.582, 0.8);
-      new Shield(8.165, 0.8);
-      new Shield(8.757, 0.8);
+      // new Shield(5.814, 0.8);
+      // new Shield(6.397, 0.8);
+      // new Shield(6.989, 0.8);
+      // new Shield(7.582, 0.8);
+      // new Shield(8.165, 0.8);
+      // new Shield(8.757, 0.8);
     }
     makeShields();
   }
@@ -282,14 +278,8 @@ $(document).ready(function pageReady() {
   var zones = [
     {
       subZones: [
-        {x: 0.0, w: 0.2},
-        {x: 0.2, w: 0.2}
-      ]
-    },
-    {
-      subZones: [
-        {x: 0.4, w: 0.1},
-        {x: 0.5, w: 0.1}
+        {x: 0.0, w: 0.3},
+        {x: 0.3, w: 0.3}
       ]
     },
     {
@@ -297,7 +287,13 @@ $(document).ready(function pageReady() {
         {x: 0.6, w: 0.2},
         {x: 0.8, w: 0.2}
       ]
-    }
+    },
+    // {
+    //   subZones: [
+    //     {x: 0.6, w: 0.2},
+    //     {x: 0.8, w: 0.2}
+    //   ]
+    // }
   ];
   for (var i in zones) {
     for (var j in zones[i].subZones) {
@@ -315,10 +311,10 @@ $(document).ready(function pageReady() {
     if (isGameOver)
       return;
 
-    if (waitZeroMonsters && numMonsters > 0) {
+    if (waitZeroMonsters && monsters.length > 0) {
       console.log('waiting...')
       return;
-    } else if (waitZeroMonsters && numMonsters <= 0) {
+    } else if (waitZeroMonsters && monsters.length == 0) {
       waitZeroMonsters = false;
       generatedMonsters = 0;
     }
@@ -334,7 +330,7 @@ $(document).ready(function pageReady() {
       var subZone = zone.subZones[Math.floor(Math.random() * zone.subZones.length)];
 
       monsters.push(new MonsterBasic(subZone.x + subZone.w * 0.5, -0.05, subZone));
-      numMonsters++;
+      // numMonsters++;
       generatedMonsters++;
     }
   }

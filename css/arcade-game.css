@@ -43,7 +43,7 @@ body {
 
 .spaceship {
   position: absolute;
-  width: 2.1%;
+  width: 3.36%;
   height: 10%;
 }
 
@@ -105,7 +105,7 @@ body {
 
 .monster {
   position: absolute;
-  width: 0.8%;
+  width: 1.28%;
   height: 8%;
   background-size: 100% auto;
 }
@@ -116,14 +116,14 @@ body {
 
 .laser {
   position: absolute;
-  width: 0.1%;
+  width: 0.24%;
   height: 3%;
   margin-right: -2.5px;
 }
 
 /* Shields */
 .shield {
-  width: 2%;
+  width: 3.2%;
   height: 6%;
   /*background-image: url('../img/shield.png');*/
   /*outline: 1px solid red;*/
@@ -145,7 +145,7 @@ svg.filters {
 }
 
 #score-2 {
-  left: 40%;
+  left: 64.5%;
 }
 
 #score-3 {
@@ -163,7 +163,7 @@ svg.filters {
   position: absolute;
   z-index: 11;
   color: #fff;
-  font-size: 3.5em;
+  font-size: 2.5em;
   text-align: center;
   top: -50%;
   visibility: hidden;
@@ -183,8 +183,8 @@ svg.filters {
 }
 
 #game-over-2 {
-  width: 21.3%;
-  left: 39.3%;
+  width: 24.3%;
+  left: 70.5%;
   /*animation: floating-1 0.9s infinite;*/
 }
 

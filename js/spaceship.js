@@ -28,6 +28,7 @@
     dead: false,
     invincible: true,
     lastActivity: null,
+    type: 'spaceship',
     initialize: function (id, x, color) {
       this.renderableInitialize(true);
       this.color = color;
@@ -170,8 +171,11 @@
         this.x = 0;
         this.vx *= -1;
       }
-      if (this.x > global.scene.oDims.w) {
-        this.x = global.scene.oDims.w;
+      if (!this._dims) {
+        this.getDims();
+      }
+      if (this.x + this._dims.w / 2 > global.scene.oDims.w) {
+        this.x = global.scene.oDims.w - this._dims.w / 2;
         this.vx *= -1;
       }
     },
@@ -183,8 +187,12 @@
       if (!this.invincible) {
         this.die();
       }
-      element.renderableDestroy();
-      element.dom.remove();
+      if (element.type === 'monster') {
+        element.die();
+      } else {
+        element.renderableDestroy();
+        element.dom.remove();
+      }
       global.Renderable.triggerEvent('player-kill', this);
     },
 
