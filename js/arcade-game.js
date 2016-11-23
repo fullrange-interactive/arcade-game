@@ -284,7 +284,7 @@ $(document).ready(function pageReady() {
     },
     {
       subZones: [
-        {x: 0.6, w: 0.2},
+        {x: 0.66, w: 0.14},
         {x: 0.8, w: 0.2}
       ]
     },
