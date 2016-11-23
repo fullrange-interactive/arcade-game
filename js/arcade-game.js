@@ -256,16 +256,16 @@ $(document).ready(function pageReady() {
 
     // Create shields
     function makeShields() {
-      new Shield(0.437, 0.8);
-      new Shield(1.020, 0.8);
-      new Shield(1.613, 0.8);
-      new Shield(2.205, 0.8);
-      new Shield(2.797, 0.8);
-      new Shield(3.362, 0.8);
-      new Shield(3.964, 0.8);
-      new Shield(4.593, 0.8);
-      new Shield(5.230, 0.8);
-      // new Shield(5.814, 0.8);
+      new Shield(0.437 - 0.3, 0.8);
+      new Shield(1.020 - 0.3, 0.8);
+      new Shield(1.613 - 0.3, 0.8);
+      new Shield(2.205 - 0.3, 0.8);
+      new Shield(2.797 - 0.3, 0.8);
+      new Shield(3.362 - 0.3, 0.8);
+      new Shield(3.964 - 0.3, 0.8);
+      new Shield(4.593 - 0.3, 0.8);
+      new Shield(5.230 - 0.3, 0.8);
+      new Shield(5.814 - 0.3, 0.8);
       // new Shield(6.397, 0.8);
       // new Shield(6.989, 0.8);
       // new Shield(7.582, 0.8);
