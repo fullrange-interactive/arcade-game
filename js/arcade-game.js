@@ -53,7 +53,7 @@ $(document).ready(function pageReady() {
         var color = playerIds[id];
       }
 
-      spaceships[id] = new Spaceship(id, Math.random() * window.scene.oDims.w, color);
+      spaceships[id] = new Spaceship(id, Math.random() * window.scene.oDims.w * 0.66, color);
       playerIds[id] = color;
       totalPlayers++;
       // clearInterval(newMonsterInterval);
@@ -248,11 +248,11 @@ $(document).ready(function pageReady() {
     waitZeroMonsters = false;
     generatedMonsters = 0;
     // numMonsters = 0;
-    var newSpaceShip = new Spaceship('bot', Math.random() * window.scene.oDims.w, '#ffffff');
+    var newSpaceShip = new Spaceship('bot', Math.random() * window.scene.oDims.w * 0.66, '#ffffff');
     spaceships['bot'] = newSpaceShip;
 
     for (var i in playerIds) {
-      spaceships[i] = new Spaceship(i, Math.random() * window.scene.oDims.w, playerIds[i]);
+      spaceships[i] = new Spaceship(i, Math.random() * window.scene.oDims.w * 0.66, playerIds[i]);
     }
 
     // Create shields
