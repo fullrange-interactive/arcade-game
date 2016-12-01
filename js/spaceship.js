@@ -174,8 +174,8 @@
       if (!this._dims) {
         this.getDims();
       }
-      if (this.x + this._dims.w / 2 > global.scene.oDims.w) {
-        this.x = global.scene.oDims.w - this._dims.w / 2;
+      if (this.x + this._dims.w / 2 > global.scene.oDims.w * 0.66) {
+        this.x = global.scene.oDims.w * 0.66 - this._dims.w / 2;
         this.vx *= -1;
       }
     },

@@ -146,6 +146,10 @@ svg.filters {
 
 #score-2 {
   left: 66.7%;
+  font-size: 3em;
+  width: 33.3%;
+  text-align: center;
+  top: 36%;
 }
 
 #score-3 {

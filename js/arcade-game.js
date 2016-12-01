@@ -180,6 +180,7 @@ $(document).ready(function pageReady() {
     $(".score").each(function () {
       $(this).text('Score: ' + score)
     })
+    $('#score-2').html('Score:<br>' + score);
     if (monsters.indexOf(element) >= 0) {
       monsters.splice(monsters.indexOf(element), 1);
     }
@@ -263,9 +264,9 @@ $(document).ready(function pageReady() {
       new Shield(2.797 - 0.3, 0.8);
       new Shield(3.362 - 0.3, 0.8);
       new Shield(3.964 - 0.3, 0.8);
-      new Shield(4.593 - 0.3, 0.8);
-      new Shield(5.230 - 0.3, 0.8);
-      new Shield(5.814 - 0.3, 0.8);
+      // new Shield(4.593 - 0.3, 0.8);
+      // new Shield(5.230 - 0.3, 0.8);
+      // new Shield(5.814 - 0.3, 0.8);
       // new Shield(6.397, 0.8);
       // new Shield(6.989, 0.8);
       // new Shield(7.582, 0.8);
@@ -278,16 +279,17 @@ $(document).ready(function pageReady() {
   var zones = [
     {
       subZones: [
-        {x: 0.0, w: 0.3},
-        {x: 0.3, w: 0.3}
+        {x: 0.0, w: 0.22},
+        {x: 0.22, w: 0.22},
+        {x: 0.44, w: 0.22}
       ]
     },
-    {
-      subZones: [
-        {x: 0.66, w: 0.14},
-        {x: 0.8, w: 0.2}
-      ]
-    },
+    // {
+    //   subZones: [
+    //     {x: 0.66, w: 0.14},
+    //     {x: 0.8, w: 0.2}
+    //   ]
+    // },
     // {
     //   subZones: [
     //     {x: 0.6, w: 0.2},
@@ -326,7 +328,7 @@ $(document).ready(function pageReady() {
       return;
     }
 
-    for (var i = 0; i < Math.ceil(Math.max(totalPlayers, 1) / 3); i++) {
+    for (var i = 0; i < 1; i++) {
       var subZone = zone.subZones[Math.floor(Math.random() * zone.subZones.length)];
 
       monsters.push(new MonsterBasic(subZone.x + subZone.w * 0.5, -0.05, subZone));
