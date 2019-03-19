@@ -5,6 +5,7 @@ body {
   font-family: 'press_start_2pregular';
   font-smooth: never;
   -webkit-font-smoothing : none;
+  overflow: hidden;
 }
 
 #overlay {
