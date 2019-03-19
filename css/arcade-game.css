@@ -245,9 +245,10 @@ svg.filters {
 
 #take-control {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  top: 40px;
+  left: 20px;
   width: 450px;
+  opacity: 0.8;
   animation: float ;animation: float1 5s ease-in-out infinite alternate both;
 }
 
