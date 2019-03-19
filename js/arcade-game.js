@@ -7,7 +7,7 @@ $(document).ready(function pageReady() {
   var NUM_ZONES = 5;
   var MONSTER_FREQUENCY = 1200;
   var MONSTER_BURST_AMOUNT = 4;
-  var MONSTER_BURST_WAIT = 1;
+  var MONSTER_BURST_WAIT = 0.4;
 
   var MAX_IDLE_TIME = 30000;
 
@@ -258,12 +258,13 @@ $(document).ready(function pageReady() {
     // Create shields
     function makeShields() {
       new Shield(0.437 - 0.3, 0.8);
-      new Shield(1.020 - 0.3, 0.8);
-      new Shield(1.613 - 0.3, 0.8);
-      new Shield(2.205 - 0.3, 0.8);
-      new Shield(2.797 - 0.3, 0.8);
-      new Shield(3.362 - 0.3, 0.8);
-      new Shield(3.964 - 0.3, 0.8);
+      new Shield(0.920 - 0.3, 0.8);
+      new Shield(1.413 - 0.3, 0.8);
+      new Shield(1.920 - 0.3, 0.8);
+      // new Shield(2.205 - 0.3, 0.8);
+      // new Shield(2.797 - 0.3, 0.8);
+      // new Shield(3.362 - 0.3, 0.8);
+      // new Shield(3.964 - 0.3, 0.8);
       // new Shield(4.593 - 0.3, 0.8);
       // new Shield(5.230 - 0.3, 0.8);
       // new Shield(5.814 - 0.3, 0.8);
@@ -279,9 +280,9 @@ $(document).ready(function pageReady() {
   var zones = [
     {
       subZones: [
-        {x: 0.0, w: 0.22},
-        {x: 0.22, w: 0.22},
-        {x: 0.44, w: 0.22}
+        {x: 0.0, w: 1},
+        // {x: 0.22, w: 0.22},
+        // {x: 0.44, w: 0.22}
       ]
     },
     // {
