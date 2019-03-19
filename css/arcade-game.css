@@ -242,3 +242,34 @@ svg.filters {
   background-position: 100% 15%;
   background-image: url('../img/warning-flipped.gif');
 }
+
+#take-control {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 450px;
+  animation: float ;animation: float1 5s ease-in-out infinite alternate both;
+}
+
+
+@keyframes float1 {
+  0% {
+    transform: translate(0) rotate(0deg);
+  }
+  20% {
+    transform: translate(-2px, 2px) rotate(2deg);
+  }
+  40% {
+    transform: translate(-2px, -2px) rotate(-3deg);
+  }
+  60% {
+    transform: translate(2px, 2px) rotate(1deg);
+  }
+  80% {
+    transform: translate(2px, -2px) rotate(-2deg);
+  }
+  100% {
+    transform: translate(0) rotate(0deg);
+  }
+
+}
